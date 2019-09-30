@@ -1,0 +1,30 @@
+body {
+  text-align: center;
+  height: 100vh;
+  background: url('https://teambeyond.net/wp-content/uploads/2017/09/Pokemon.jpg');
+  border: 0;
+  margin: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.circle {
+  position: relative;
+  height: 500px;
+  width: 500px;
+  background: Red;
+  left: 66vh;
+  top: 22vh;
+  border-radius: 300px;
+  text-align: center;
+}
+button {
+top: 40%;
+}
+input {
+  margin-top: 110px;
+  margin-left: 10px;
+}
+.container {
+
+}
