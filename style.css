@@ -103,10 +103,25 @@ li {
   height: 300px;
   width: 100%;
   position: absolute;
-  bottom: 70px;
+  bottom: 20px;
 }
 #player {
   position: absolute;
+  /* background-size: 200%;
+  background-position: center; */
+  width: 96px;
+  height: 96px;
   top: 0px;
   left: 400px;
 }
+
+#poke-ball {
+  background-image: url('pngfind.com-pokeball-png-1032129.png');
+  background-size: cover;
+  display: inline;
+  position: absolute;
+  width: 28px;
+  height: 28px;
+}
+
+

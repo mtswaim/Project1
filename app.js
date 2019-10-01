@@ -3,9 +3,13 @@ const search = document.querySelector('#input');
 let button = document.querySelector('#search')
 const pageOne = document.querySelector('#home');
 const pageGame = document.querySelector('#game');
-let player;
 const limitBox = document.querySelector('#run-box')
-
+const player = document.querySelector("#player")
+let pokeBall = document.querySelector("#poke-ball")
+const beginGame = document.querySelector('#begin')
+let startLeft = 400;
+let startTop = 0;
+let player1;
 const getInfo = (pokemon) => {
   const pokeInfo = document.querySelector('.container');
   pokeInfo.innerHTML = `
@@ -24,46 +28,49 @@ const getInfo = (pokemon) => {
   startGame.addEventListener('click', () => {
     pageOne.style.display = "none";
     pageGame.style.display = "block";
-    limitBox.innerHTML = `<img id="player"src= "${pokemon.sprites.front_default}">`
-    player = document.getElementById('player')
+    player.style.backgroundImage = `url(${pokemon.sprites.front_default})`
   })
+  player1 = document.getElementById('#player')
 };
-
 button.addEventListener('click', async () => {
   let response = await axios.get(`${domain}/${search.value.toLowerCase()}/`)
   let pokeString = response.data;
   getInfo(pokeString)
 })
 
+const mvLeft = () => {
+  if (startLeft > 0) {
+    startLeft -= 15
+    player.style.left = `${startLeft}px`;
+  }
+}
+const mvRight = () => {
+  if (startLeft < 1677) {
+    startLeft += 15
+    player.style.left = `${startLeft}px`;
+  }
+}
 
-// let ie = (document.all && !window.opera) ? 1 : 0;
-// if (!ie) {
-//   var e = document.captureEvents(Event.KEYDOWN)
-// }
-// window.onload = function () {
-//   if (!ie) {
-//     document.onkeydown = function (e) {
-//       move(e);
-//     }
-//   }
-//   else {
-//     document.onkeydown = function () {
-//       move();
-//     }
-//   }
-// }
-// function move(e) {
-//   if (ie) {
-//     ek = window.event.keyCode;
-//   }
-//   else {
-//     let event = e;
-//     var ek = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
-//   }
-//   if (ek == 37) player.style.left = (player.style.left.replace('px', '') * 1) - 5;
-//   if (ek == 39) player.style.left = (player.style.left.replace('px', '') * 1) + 5;
-// }
+document.addEventListener('keydown', event => {
 
-// player.addEventListener('keydown', () => {
+  if (event.keyCode === 37) {
+    mvLeft();
+  }
+  if (event.keyCode === 39) {
+    mvRight();
+  }
 
-// } )
+})
+
+const pokeFall = () => {
+  if (startTop < 900) {
+    startTop += 7
+    pokeBall.style.top = `${startTop}px`
+    setTimeout(pokeFall, 20)
+  }
+}
+begin.addEventListener('click', () => {
+  pokeFall()
+})
+
+
