@@ -5,7 +5,7 @@ const pageOne = document.querySelector('#home');
 const pageGame = document.querySelector('#game');
 const limitBox = document.querySelector('#run-box')
 const player = document.querySelector("#player")
-let pokeBall = document.querySelector("#poke-ball")
+// let pokeBall = document.querySelector("#poke-ball")
 const beginGame = document.querySelector('#begin')
 let startLeft = 400;
 let startTop = 0;
@@ -42,6 +42,7 @@ const mvLeft = () => {
   if (startLeft > 0) {
     startLeft -= 15
     player.style.left = `${startLeft}px`;
+    debugger;
   }
 }
 const mvRight = () => {
@@ -62,15 +63,27 @@ document.addEventListener('keydown', event => {
 
 })
 
-const pokeFall = () => {
+const pokeFall = (pokeball) => {
   if (startTop < 900) {
     startTop += 7
     pokeBall.style.top = `${startTop}px`
-    setTimeout(pokeFall, 20)
+    // player.getBoundingClientRect().top
+    setTimeout(() => pokeFall(pokeball), 20)
   }
 }
+
+const generateBall = () => {
+  const randomPoke = document.createElement('div')
+  randomPoke.id = "random-poke"
+  pageGame.append(randomPoke)
+  randomSpot = Math.floor(Math.random() * window.innerWidth + 1)
+  randomPoke.style.left = `${randomSpot}px`
+  // (window.innerWidth < ballLocation || ballLocation > 0)
+  //window.innerWidth
+  //innderWidth = 1136
+}
 begin.addEventListener('click', () => {
-  pokeFall()
+  generateBall(pokeFall())
 })
 
 
