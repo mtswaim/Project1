@@ -8,7 +8,27 @@ const player = document.querySelector("#player")
 // let pokeBall = document.querySelector("#poke-ball")
 const beginGame = document.querySelector('#begin')
 let startLeft = 400;
-let startTop = 0;
+const pokeFall = (pokeball, startTop) => {
+  if (startTop < 900) {
+    startTop += 7
+    pokeball.style.top = `${startTop}px`
+    setTimeout(() => pokeFall(pokeball, startTop), 200)
+  } else {
+    pokeball.display = "none";
+  }
+}
+const generateBall = () => {
+  let randomPoke = document.createElement('div')
+  randomPoke.id = "random-poke"
+  pageGame.append(randomPoke)
+  randomSpot = Math.floor(Math.random() * window.innerWidth + 1)
+  randomPoke.style.left = `${randomSpot}px`
+  randomPoke.style.top = "0px"
+  // (window.innerWidth < ballLocation || ballLocation > 0)
+  //window.innerWidth
+  //innderWidth = 1136
+  pokeFall(randomPoke, 0)
+}
 let player1;
 const getInfo = (pokemon) => {
   const pokeInfo = document.querySelector('.container');
@@ -29,6 +49,7 @@ const getInfo = (pokemon) => {
     pageOne.style.display = "none";
     pageGame.style.display = "block";
     player.style.backgroundImage = `url(${pokemon.sprites.front_default})`
+    setInterval(generateBall, 1000)
   })
   player1 = document.getElementById('#player')
 };
@@ -37,12 +58,10 @@ button.addEventListener('click', async () => {
   let pokeString = response.data;
   getInfo(pokeString)
 })
-
 const mvLeft = () => {
   if (startLeft > 0) {
     startLeft -= 15
     player.style.left = `${startLeft}px`;
-    debugger;
   }
 }
 const mvRight = () => {
@@ -51,39 +70,15 @@ const mvRight = () => {
     player.style.left = `${startLeft}px`;
   }
 }
-
 document.addEventListener('keydown', event => {
-
   if (event.keyCode === 37) {
     mvLeft();
   }
   if (event.keyCode === 39) {
     mvRight();
   }
-
 })
-
-const pokeFall = (pokeball) => {
-  if (startTop < 900) {
-    startTop += 7
-    pokeBall.style.top = `${startTop}px`
-    // player.getBoundingClientRect().top
-    setTimeout(() => pokeFall(pokeball), 20)
-  }
-}
-
-const generateBall = () => {
-  const randomPoke = document.createElement('div')
-  randomPoke.id = "random-poke"
-  pageGame.append(randomPoke)
-  randomSpot = Math.floor(Math.random() * window.innerWidth + 1)
-  randomPoke.style.left = `${randomSpot}px`
-  // (window.innerWidth < ballLocation || ballLocation > 0)
-  //window.innerWidth
-  //innderWidth = 1136
-}
-begin.addEventListener('click', () => {
-  generateBall(pokeFall())
-})
-
-
+// begin.addEventListener('click', () => {
+//   setInterval(generateBall, 1000)
+// })
+// get.bounding.clientRect()
