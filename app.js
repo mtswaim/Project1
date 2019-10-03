@@ -29,18 +29,17 @@ window.addEventListener("keydown", function (e) {
 
 
 const gainExp = () => {
-  if (totalExp < 390) {
+  console.log(totalExp)
+  if (totalExp < 390 && player.style.display !== "none") {
+    console.log("yay!")
     totalExp += 10
     exp.style.width = `${totalExp}px`;
-  } else {
-    // playerLvl += 1
+    setTimeout(gainExp, 1000)
   }
-
 }
 
 const pokeFall = (pokeball, startTop) => {
   if (startTop < 830) {
-    gainExp()
     startTop += difficulty
     pokeball.style.top = `${startTop}px`
     setTimeout(() => pokeFall(pokeball, startTop), 5)
@@ -135,18 +134,21 @@ easy.addEventListener('click', () => {
   setInterval(generateBall, 400)
   difficulty = 1
   gameBox.style.display = 'none'
+  gainExp();
 })
 
 medium.addEventListener('click', () => {
   setInterval(generateBall, 80)
   difficulty = 3
   gameBox.style.display = 'none'
+  gainExp();
 })
 
 hard.addEventListener('click', () => {
-  setInterval(generateBall, 30)
-  difficulty = 6
+  setInterval(generateBall, 80)
+  difficulty = 5
   gameBox.style.display = 'none'
+  gainExp();
 })
 
 tryNew.addEventListener('click', () => {
