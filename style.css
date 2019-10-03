@@ -118,7 +118,7 @@ li {
 #poke-ball {
   background-image: url('pngfind.com-pokeball-png-1032129.png');
   background-size: cover;
-  display: inline;
+  display: none;
   position: absolute;
   width: 28px;
   height: 28px;

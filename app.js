@@ -8,14 +8,39 @@ const player = document.querySelector("#player")
 // let pokeBall = document.querySelector("#poke-ball")
 const beginGame = document.querySelector('#begin')
 let startLeft = 400;
+
+
 const pokeFall = (pokeball, startTop) => {
-  if (startTop < 900) {
-    startTop += 7
+  if (startTop < 800) {
+    startTop += 1
     pokeball.style.top = `${startTop}px`
-    setTimeout(() => pokeFall(pokeball, startTop), 200)
+    setTimeout(() => pokeFall(pokeball, startTop), 5)
+    let randomPokeLoc = document.querySelector('#random-poke').getBoundingClientRect();
+    let randomPokeLocRight = randomPokeLoc.right
+    let randomPokeLocLeft = randomPokeLoc.left
+    let randomPokeLocBottom = randomPokeLoc.bottom
+    let randomPokeLocTop = randomPokeLoc.top
+    let randomPokeLocX = randomPokeLoc.x
+    let randomPokeLocY = randomPokeLoc.y
+
+    let playerLoc = document.querySelector("#player").getBoundingClientRect();
+    let playerLocRight = playerLoc.right
+    let playerLocLeft = playerLoc.left
+    let playerLocTop = playerLoc.top
+    let playerLocBottom = playerLoc.bottom
+    let playerLocX = playerLoc.x
+    let playerLocY = playerLoc.y
+
+    if ((playerLocTop <= randomPokeLocBottom) && (playerLocLeft <= randomPokeLocLeft && playerLocRight >= randomPokeLocRight)) {
+      console.log("Holy fuck")
+    } else {
+
+    }
   } else {
-    pokeball.display = "none";
+    pokeball.remove();
+
   }
+
 }
 const generateBall = () => {
   let randomPoke = document.createElement('div')
@@ -24,10 +49,8 @@ const generateBall = () => {
   randomSpot = Math.floor(Math.random() * window.innerWidth + 1)
   randomPoke.style.left = `${randomSpot}px`
   randomPoke.style.top = "0px"
-  // (window.innerWidth < ballLocation || ballLocation > 0)
-  //window.innerWidth
-  //innderWidth = 1136
   pokeFall(randomPoke, 0)
+
 }
 let player1;
 const getInfo = (pokemon) => {
@@ -49,7 +72,7 @@ const getInfo = (pokemon) => {
     pageOne.style.display = "none";
     pageGame.style.display = "block";
     player.style.backgroundImage = `url(${pokemon.sprites.front_default})`
-    setInterval(generateBall, 1000)
+    setInterval(generateBall, 2000)
   })
   player1 = document.getElementById('#player')
 };
@@ -78,7 +101,9 @@ document.addEventListener('keydown', event => {
     mvRight();
   }
 })
-// begin.addEventListener('click', () => {
-//   setInterval(generateBall, 1000)
-// })
-// get.bounding.clientRect()
+
+beginGame.addEventListener('keydown', event) => {
+  if (event.keycode === 32) {
+
+  }
+}
