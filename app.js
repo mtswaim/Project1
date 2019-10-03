@@ -18,6 +18,8 @@ let loseBox = document.querySelector('#lose-box')
 let tryNew = document.querySelector('#try-new-poke')
 let tryAgain = document.querySelector('#try-again')
 let difficulty;
+let totalExp = 0;
+playerLvl = document.querySelector("#player-level")
 
 window.addEventListener("keydown", function (e) {
   if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
@@ -26,8 +28,19 @@ window.addEventListener("keydown", function (e) {
 }, false);
 
 
+const gainExp = () => {
+  if (totalExp < 390) {
+    totalExp += 10
+    exp.style.width = `${totalExp}px`;
+  } else {
+    // playerLvl += 1
+  }
+
+}
+
 const pokeFall = (pokeball, startTop) => {
   if (startTop < 830) {
+    gainExp()
     startTop += difficulty
     pokeball.style.top = `${startTop}px`
     setTimeout(() => pokeFall(pokeball, startTop), 5)
@@ -119,7 +132,7 @@ document.addEventListener('keydown', event => {
 })
 
 easy.addEventListener('click', () => {
-  setInterval(generateBall, 200)
+  setInterval(generateBall, 400)
   difficulty = 1
   gameBox.style.display = 'none'
 })

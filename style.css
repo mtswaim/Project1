@@ -18,7 +18,8 @@ body {
   position: relative;
   height: 500px;
   width: 500px;
-  left: 66vh;
+  left: 50%;
+  margin-left: -250px;
   top: 22vh;
   border-radius: 300px;
   text-align: center;
@@ -149,11 +150,20 @@ li {
   height: 20px;
   width: 400px;
   background: lightgrey;
+  text-align: left;
+  display: flex;
 }
 #experience {
-  color: aqua;
-  height: 100%;
-  width: 0px;
+  background: aqua;
+  border: 2px solid white;;
+  height: 18px;
+  display: block;
+}
+h3 {
+height: 100%;
+width: 10px;
+margin: 0;
+height: 10px;
 }
 #lose-box {
   display: none;
@@ -200,4 +210,35 @@ li {
  background: black;
  color: white;
 }
+#easy, #medium, #hard {
+  display: inline;
+  padding: 30px 30px 30px 30px;
+  top: 40%;
+  left: 48%;
+  transition-duration: 0.5s;
+  background-color: transparent;
+  border: 2px solid black;
+  font-weight: bold;
+  margin: 400px 0 0 0;
+}
+#easy:hover, #medium:hover, #hard:hover { 
+background: black;
+color: white;
+}
 
+h3 {
+  display: inline;
+}
+
+
+#mobile {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background: whitesmoke;
+}
+@media only screen and (max-width: 600px) {
+  #mobile {
+    display: block;
+  }
+}
