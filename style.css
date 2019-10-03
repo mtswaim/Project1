@@ -132,4 +132,72 @@ li {
   height: 28px;
   left: 20px
 }
+#button-box {
+  width: 100%;
+  height: 100%;
+  background: rgba(169,169,169,.5); 
+  text-align: center;
+}
+#begin {
+  position: absolute;
+  border: 2px solid black;
+  padding: 5px;
+  top: 50%;
+}
+#experience-bar {
+  position: absolute;
+  height: 20px;
+  width: 400px;
+  background: lightgrey;
+}
+#experience {
+  color: aqua;
+  height: 100%;
+  width: 0px;
+}
+#lose-box {
+  display: none;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: rgba(169,169,169,.5)
+}
+#caught {
+  position: absolute;
+  top: 30%;
+  left: 14%;
+  font-size: 100px;
+  color: whitesmoke;
+  margin: 0;
+}
+/* #try-again {
+  position: absolute;
+  margin-top: 20px;
+  padding: 10px 10px 10px 10px;
+  top: 40%;
+  left: 50%;
+  transition-duration: 0.5s;
+  background-color: transparent;
+  border: 2px solid black;
+  font-weight: bold;
+}
+#try-again:hover {
+  background: black;
+  color: white;
+} */
+#try-new-poke {
+  position: absolute;
+  margin-top: 20px;
+  padding: 10px 10px 10px 10px;
+  top: 40%;
+  left: 48%;
+  transition-duration: 0.5s;
+  background-color: transparent;
+  border: 2px solid black;
+  font-weight: bold;
+}
+#try-new-poke:hover {
+ background: black;
+ color: white;
+}
 

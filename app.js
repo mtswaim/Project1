@@ -6,13 +6,29 @@ const pageGame = document.querySelector('#game');
 const limitBox = document.querySelector('#run-box')
 const player = document.querySelector("#player")
 // let pokeBall = document.querySelector("#poke-ball")
-const beginGame = document.querySelector('#begin')
+const easy = document.querySelector('#easy')
+const medium = document.querySelector('#medium')
+const hard = document.querySelector('#hard')
+
+let gameBox = document.querySelector('#button-box')
 let startLeft = 400;
+let expBar = document.querySelector('#experience-bar')
+let exp = document.querySelector('#experience')
+let loseBox = document.querySelector('#lose-box')
+let tryNew = document.querySelector('#try-new-poke')
+let tryAgain = document.querySelector('#try-again')
+let difficulty;
+
+window.addEventListener("keydown", function (e) {
+  if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+    e.preventDefault();
+  }
+}, false);
 
 
 const pokeFall = (pokeball, startTop) => {
-  if (startTop < 800) {
-    startTop += 1
+  if (startTop < 830) {
+    startTop += difficulty
     pokeball.style.top = `${startTop}px`
     setTimeout(() => pokeFall(pokeball, startTop), 5)
     let randomPokeLoc = document.querySelector('#random-poke').getBoundingClientRect();
@@ -32,7 +48,8 @@ const pokeFall = (pokeball, startTop) => {
     let playerLocY = playerLoc.y
 
     if ((playerLocTop <= randomPokeLocBottom) && (playerLocLeft <= randomPokeLocLeft && playerLocRight >= randomPokeLocRight)) {
-      console.log("Holy fuck")
+      player.style.display = "none"
+      loseBox.style.display = "block"
     } else {
 
     }
@@ -72,7 +89,6 @@ const getInfo = (pokemon) => {
     pageOne.style.display = "none";
     pageGame.style.display = "block";
     player.style.backgroundImage = `url(${pokemon.sprites.front_default})`
-    setInterval(generateBall, 2000)
   })
   player1 = document.getElementById('#player')
 };
@@ -83,13 +99,13 @@ button.addEventListener('click', async () => {
 })
 const mvLeft = () => {
   if (startLeft > 0) {
-    startLeft -= 15
+    startLeft -= 25
     player.style.left = `${startLeft}px`;
   }
 }
 const mvRight = () => {
   if (startLeft < 1677) {
-    startLeft += 15
+    startLeft += 25
     player.style.left = `${startLeft}px`;
   }
 }
@@ -102,8 +118,24 @@ document.addEventListener('keydown', event => {
   }
 })
 
-beginGame.addEventListener('keydown', event) => {
-  if (event.keycode === 32) {
+easy.addEventListener('click', () => {
+  setInterval(generateBall, 200)
+  difficulty = 1
+  gameBox.style.display = 'none'
+})
 
-  }
-}
+medium.addEventListener('click', () => {
+  setInterval(generateBall, 80)
+  difficulty = 3
+  gameBox.style.display = 'none'
+})
+
+hard.addEventListener('click', () => {
+  setInterval(generateBall, 30)
+  difficulty = 6
+  gameBox.style.display = 'none'
+})
+
+tryNew.addEventListener('click', () => {
+  location.reload()
+})
