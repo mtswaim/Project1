@@ -16,11 +16,13 @@ let expBar = document.querySelector('#experience-bar')
 let exp = document.querySelector('#experience')
 let loseBox = document.querySelector('#lose-box')
 let tryNew = document.querySelector('#try-new-poke')
+let tryNew2 = document.querySelector('#try-new-poke2')
 let tryAgain = document.querySelector('#try-again')
 let difficulty;
 let totalExp = 0;
-playerLvl = document.querySelector("#player-level")
-
+let playerNumber = document.querySelector("#player-level").innerHTML
+let playerLvl = parseInt(playerNumber)
+let wonGame = document.querySelector('#won-game')
 window.addEventListener("keydown", function (e) {
   if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
     e.preventDefault();
@@ -29,12 +31,38 @@ window.addEventListener("keydown", function (e) {
 
 
 const gainExp = () => {
-  console.log(totalExp)
+
   if (totalExp < 390 && player.style.display !== "none") {
-    console.log("yay!")
-    totalExp += 10
+    totalExp += 400
     exp.style.width = `${totalExp}px`;
-    setTimeout(gainExp, 1000)
+    setTimeout(gainExp, 100)
+  }
+  if (totalExp >= 390) {
+    playerLvl += 1
+    document.querySelector("#player-level").innerHTML = playerLvl
+    totalExp = 0
+    exp.style.width = `${totalExp}px`;
+
+  }
+  if (playerLvl === 20 && totalExp === 0) {
+    setInterval(generateBall, 1000)
+    console.log("ran")
+  }
+  if (playerLvl === 40 && totalExp === 0) {
+    difficulty += 1
+    console.log(difficulty)
+  }
+  if (playerLvl === 60 && totalExp === 0) {
+    setInterval(generateBall, 3000)
+    console.log("ran")
+  }
+  if (playerLvl === 80 && totalExp === 0) {
+    difficulty += 1
+    console.log(difficulty)
+  }
+  if (playerLvl === 100) {
+    wonGame.style.display = "block"
+    pageGame.style.display = "none"
   }
 }
 
@@ -47,17 +75,12 @@ const pokeFall = (pokeball, startTop) => {
     let randomPokeLocRight = randomPokeLoc.right
     let randomPokeLocLeft = randomPokeLoc.left
     let randomPokeLocBottom = randomPokeLoc.bottom
-    let randomPokeLocTop = randomPokeLoc.top
-    let randomPokeLocX = randomPokeLoc.x
-    let randomPokeLocY = randomPokeLoc.y
 
     let playerLoc = document.querySelector("#player").getBoundingClientRect();
     let playerLocRight = playerLoc.right
     let playerLocLeft = playerLoc.left
     let playerLocTop = playerLoc.top
-    let playerLocBottom = playerLoc.bottom
-    let playerLocX = playerLoc.x
-    let playerLocY = playerLoc.y
+
 
     if ((playerLocTop <= randomPokeLocBottom) && (playerLocLeft <= randomPokeLocLeft && playerLocRight >= randomPokeLocRight)) {
       player.style.display = "none"
@@ -79,7 +102,6 @@ const generateBall = () => {
   randomPoke.style.left = `${randomSpot}px`
   randomPoke.style.top = "0px"
   pokeFall(randomPoke, 0)
-
 }
 let player1;
 const getInfo = (pokemon) => {
@@ -131,26 +153,30 @@ document.addEventListener('keydown', event => {
 })
 
 easy.addEventListener('click', () => {
-  setInterval(generateBall, 400)
+  setInterval(generateBall, 150)
   difficulty = 1
   gameBox.style.display = 'none'
   gainExp();
 })
 
 medium.addEventListener('click', () => {
-  setInterval(generateBall, 80)
+  setInterval(generateBall, 150)
   difficulty = 3
   gameBox.style.display = 'none'
   gainExp();
+
 })
 
 hard.addEventListener('click', () => {
-  setInterval(generateBall, 80)
-  difficulty = 5
+  setInterval(generateBall, 100)
+  difficulty = 6
   gameBox.style.display = 'none'
   gainExp();
 })
 
 tryNew.addEventListener('click', () => {
+  location.reload()
+})
+tryNew2.addEventListener('click', () => {
   location.reload()
 })
