@@ -33,9 +33,9 @@ window.addEventListener("keydown", function (e) {
 const gainExp = () => {
 
   if (totalExp < 390 && player.style.display !== "none") {
-    totalExp += 400
+    totalExp += 2
     exp.style.width = `${totalExp}px`;
-    setTimeout(gainExp, 100)
+    setTimeout(gainExp, 80)
   }
   if (totalExp >= 390) {
     playerLvl += 1
