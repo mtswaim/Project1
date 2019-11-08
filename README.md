@@ -4,7 +4,7 @@
 	1. Choose a pokemon
 	2. Recieve a short list of details on selected Pokemon
 	3. Enter Game with selected Pokemon 
-  4. Dodge Pokeballs
+  	4. Dodge Pokeballs
 
 # API
 	Pokemon API
